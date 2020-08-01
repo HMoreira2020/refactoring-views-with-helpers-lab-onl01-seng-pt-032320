@@ -1,9 +1,11 @@
 class Song < ActiveRecord::Base
   belongs_to :artist
-
+  
   def artist_name
-  end
+    self.artist.name unless artist.nil?
+  end 
 
   def artist_name=(name)
-  end
+    self.artist = Artist.find_or_create_by(name: name)
+  end 
 end
